@@ -4,7 +4,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 
 
 Python Input
-by [hojongs](https://github.com/hojongs)
+[by [hojongs](https://github.com/hojongs)]
 ---
 ```
 import sys
