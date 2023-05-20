@@ -5,6 +5,10 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 
 Python Input(by @hojongs)
 ---
+```
+import sys
+readl = sys.stdin.readline
+
 """
 n = int(readl())
 nums = [int(i) for i in readl().split()]
@@ -13,5 +17,5 @@ lines = [readl().rstrip() for _ in range(n)]
 rows = [[int(i) for i in readl().split()] for _ in range(n)]
 s = readl().rstrip()
 """
-import sys
-readl = sys.stdin.readline
+
+```
