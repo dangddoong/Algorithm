@@ -1,16 +1,14 @@
 import sys
-readl = sys.stdin.readline
-n = int(readl())
-word_list = [[] for _ in range(50)]
-answer = ""
 
-for _ in range(n):
-    word = readl().rstrip()
-    word_list[len(word)-1].append(word)
+n = int(sys.stdin.readline())
+lst = []
 
-for i in range(50):
-    if len(word_list[i]) != 0:
-        for k in sorted(set(word_list[i])):
-            answer += (k + "\n")
+for i in range(n):
+    lst.append(sys.stdin.readline().strip())
+set_lst = set(lst)
+lst = list(set_lst)
+lst.sort()
+lst.sort(key = len)
 
-print(answer)
+for i in lst:
+    print(i)
