@@ -3,7 +3,7 @@ readl = sys.stdin.readline
 
 n, m = map(int, readl().split())
 dict = {}
-answer = {}
+answer = []
 count = 0
 
 for _ in range(n):
@@ -14,14 +14,8 @@ for _ in range(m):
     people = readl().rstrip()
     first = people[0]
     if people in dict:
-        count += 1
-        if first in answer:
-            answer[first].append(people)
-        else:
-            answer[first] = [people]
+        answer.append(people)
 
-# Python3.6부터는 딕셔너리가 입력순대로 정렬됨
-print(count)
-for key in sorted(answer):
-    answer[key].sort()
-    print('\n'.join(answer[key]))
+answer.sort()
+print(len(answer))
+print('\n'.join(answer))
