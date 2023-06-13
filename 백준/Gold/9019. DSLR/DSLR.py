@@ -1,85 +1,40 @@
 import sys
-
-
-def d(num):
-    double = num * 2
-    if double > 9999:
-        double = double % 10000
-    return double
-
-
-def s(num):
-    minus_one = num - 1
-    if num == 0:
-        minus_one = 9999
-    return minus_one
-
-
-def l(num):
-    str_num = str(num)
-    # 4자리수가 아닐 때를 위한 line
-    str_num = "0" * (4 - len(str_num)) + str_num
-    left = int(str_num[1:] + str_num[:-3])
-    return left
-
-
-def r(num):
-    str_num = str(num)
-    # 4자리수가 아닐 때를 위한 line
-    str_num = "0" * (4 - len(str_num)) + str_num
-    right = int(str_num[3:] + str_num[:-1])
-    return right
-
+from collections import deque
 
 readl = sys.stdin.readline
 t = int(readl())
 
 for _ in range(t):
     a, b = map(int, readl().split())
-    visted = [False] * 10000
-    db = {a: []}
-    find = False
-    while not find:
-        db_copy = db.copy()
-        db = {}
-        for num in db_copy:
-            result = d(num)
-            if not visted[result]:
-                db[result] = db_copy[num].copy()
-                db[result].append("D")
-                visted[result] = True
-            if result == b:
-                print(''.join(db[result]))
-                find = True
-                break
-                
-            result = s(num)
-            if not visted[result]:
-                db[result] = db_copy[num].copy()
-                db[result].append("S")
-                visted[result] = True
-            if result == b:
-                print(''.join(db[result]))
-                find = True
-                break
-            
-            result = l(num)
-            if not visted[result]:
-                db[result] = db_copy[num].copy()
-                db[result].append("L")
-                visted[result] = True
-            if result == b:
-                print(''.join(db[result]))
-                find = True
-                break
+    deq = deque()
+    deq.append((a, ""))
+    visited = [False] * 10000
 
-            result = r(num)
-            if not visted[result]:
-                db[result] = db_copy[num].copy()
-                db[result].append("R")
-                visted[result] = True
-            if result == b:
-                print(''.join(db[result]))
-                find = True
-                break
+    while deq:
+        num, order = deq.popleft()
 
+        if num == b:
+            print(order)
+            break
+
+        # 1
+        num2 = (2 * num) % 10000
+        if not visited[num2]:
+            deq.append((num2, order + "D"))
+            visited[num2] = True
+        # 2
+        num2 = (num - 1) % 10000
+        if not visited[num2]:
+            deq.append((num2, order + "S"))
+            visited[num2] = True
+        # 3
+        num2 = (10 * num + (num // 1000)) % 10000
+        if not visited[num2]:
+            deq.append((num2, order + "L"))
+            visited[num2] = True
+
+        # 4
+        num2 = (num // 10 + (num % 10) * 1000) % 10000
+        if not visited[num2]:
+            deq.append((num2, order + "R"))
+            visited[num2] = True
