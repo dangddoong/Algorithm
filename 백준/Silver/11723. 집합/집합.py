@@ -23,9 +23,7 @@ for _ in range(m):
     elif orders == "toggle":
         num_exist[num] = not num_exist[num]
     elif orders == "all":
-        for i in range(20):
-            num_exist[i+1] = True
+        num_exist = [True] * 21
     else:
-        for i in range(20):
-            num_exist[i + 1] = False
+        num_exist = [False] * 21
 
