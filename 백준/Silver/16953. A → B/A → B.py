@@ -1,25 +1,22 @@
 import sys
+from collections import deque
 
 readl = sys.stdin.readline
 a, b = map(int, readl().split())
-count = -1
+depth = 1
+deq = deque([a*2, int(str(a) + '1')])
 
+while deq:
+    length = len(deq)
+    for _ in range(length):
+        now = deq.popleft()
+        if now == b:
+            print(depth+1)
+            exit(0)
+        elif now > b:
+            continue
+        deq.append(now*2)
+        deq.append(int(str(now) + '1'))
+    depth += 1
 
-def cal(now, target, depth):
-    global count
-    if now == target:
-        if count == -1 or count > depth:
-            count = depth
-        return
-    if now > target:
-        return
-
-    cal(now*2, target, depth+1)
-    cal(int(str(now) + '1'), target, depth+1)
-
-
-cal(a, b, 0)
-if count == -1:
-    print(-1)
-else:
-    print(count+1)
+print(-1)
