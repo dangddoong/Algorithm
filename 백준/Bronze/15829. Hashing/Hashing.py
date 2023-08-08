@@ -2,7 +2,9 @@ import sys
 
 readl = sys.stdin.readline
 
-r_list = [31**i for i in range(int(readl()))]
+r_list = [1]
+for i in range(1, int(readl())):
+    r_list.append(r_list[i-1] * 31)
 s = readl().rstrip()
 answer = 0
 
