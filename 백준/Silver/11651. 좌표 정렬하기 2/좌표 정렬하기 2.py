@@ -6,8 +6,8 @@ n = int(readl())
 array = []
 for i in range(n):
     x, y = map(int, input().split())
-    array.append([y, x])
+    array.append(y * 1_000_000 + x + 100_000)
 
 array.sort()
-for y, x in array:
-    print(x, y)
+for num in array:
+    print((num % 1_000_000) - 100_000, num//1_000_000)
